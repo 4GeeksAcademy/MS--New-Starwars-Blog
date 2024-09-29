@@ -1,3 +1,9 @@
+import React, { useState, useEffect, useContext } from "react";
+import { Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { Context } from "../store/appContext";
+
+
 export const PlanetDescription = () => {
 	const { store, actions } = useContext(Context);
     const {id} = useParams();
@@ -13,6 +19,7 @@ export const PlanetDescription = () => {
     }, []);
 	return (
 		<div className="container">
+            <img src={`https://starwars-visualguide.com/assets/img/planets/${id}.jpg`} className="card-img-top" alt="..." />
             <div className="row">{planet.name}</div>
             <div className="row">{planet.gravity}</div>
             <div className="row">{planet.climate}</div>

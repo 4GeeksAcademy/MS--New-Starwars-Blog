@@ -8,10 +8,20 @@ export const StarShipCard = () => {
     async function fetchData() {
       const res = await fetch("https://swapi.dev/api/starships/");
       const data = await res.json();
+      const starshipWithIds = data.results.map(starShips => ({
+        ...starShips,
+        id: getIdFromUrl(starShips.url)
+      }));
       setstarShips(data.results);
     }
     fetchData();
   }, []);
+
+  const getIdFromUrl = (url) => {
+    const matches = url.match(/\/(\d+)\/$/);
+    return matches ? matches[1] : null;
+  };
+
   function handleFavorites(name) {
     store.favorites.includes(name) ? actions.removeFromFavorites(name) : actions.addToFavorites(name);
   }

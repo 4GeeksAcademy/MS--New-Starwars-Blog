@@ -8,10 +8,19 @@ export const PlanetCard = () => {
     async function fetchData() {
       const res = await fetch("https://swapi.dev/api/planets/");
       const data = await res.json();
+      const planetsWithIds = data.results.map(planets => ({
+        ...planets,
+        id: getIdFromUrl(planets.url)
+      }));
       setPlanets(data.results);
     }
     fetchData();
   }, []);
+  const getIdFromUrl = (url) => {
+    const matches = url.match(/\/(\d+)\/$/);
+    return matches ? matches[1] : null;
+  };
+
   function handleFavorites(name) {
     store.favorites.includes(name) ? actions.removeFromFavorites(name) : actions.addToFavorites(name);
   }

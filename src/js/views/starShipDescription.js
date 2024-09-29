@@ -3,8 +3,6 @@ import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { Context } from "../store/appContext";
 
-
-
 export const StarShipDescription = () => {
     const { store, actions } = useContext(Context);
     const { id } = useParams();
@@ -35,6 +33,7 @@ export const StarShipDescription = () => {
     }, []);
     return (
         <div className="container">
+            <img src={`https://starwars-visualguide.com/assets/img/starships/${newID}.jpg`} className="card-img-top" alt="..." />
             <div className="row">{starship.name}</div>
             <div className="row">{starship.model}</div>
             <div className="row">{starship.manufacturer}</div>

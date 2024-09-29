@@ -17,6 +17,7 @@ export const CharacterDescription = () => {
     }, []);
 	return (
 		<div className="container">
+            <img src={`https://starwars-visualguide.com/assets/img/characters/${id}.jpg`} className="card-img-top" alt="..." />
             <div className="row">{character.name}</div>
             <div className="row">{character.height}</div>
             <div className="row">{character.hair_color}</div>
