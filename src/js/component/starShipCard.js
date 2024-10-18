@@ -8,11 +8,11 @@ export const StarShipCard = () => {
     async function fetchData() {
       const res = await fetch("https://swapi.dev/api/starships/");
       const data = await res.json();
-      const starshipWithIds = data.results.map(starShips => ({
+      const starShipWithIds = data.results.map(starShips => ({
         ...starShips,
         id: getIdFromUrl(starShips.url)
       }));
-      setstarShips(data.results);
+      setstarShips(starShipWithIds);
     }
     fetchData();
   }, []);
@@ -29,7 +29,7 @@ export const StarShipCard = () => {
     <div className="container d-flex col-10 overflow-auto mt-5 mx-auto">
       {starShips?.map((starShip, index) => (
         <div className="card" style={{ minWidth: "200px" }} key={index}>
-          <img src="..." className="card-img-top" alt="..." />
+          <img src={`https://starwars-visualguide.com/assets/img/starships/${starShip.id}.jpg`} className="card-img-top" alt="..." />
           <div className="card-body">
             <h5 className="card-title text-dark">{starShip.name}</h5>
             <button className="btn btn-primary" onClick={() => handleFavorites(starShip.name)}>

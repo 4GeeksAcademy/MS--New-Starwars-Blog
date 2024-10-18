@@ -12,7 +12,7 @@ export const PlanetCard = () => {
         ...planets,
         id: getIdFromUrl(planets.url)
       }));
-      setPlanets(data.results);
+      setPlanets(planetsWithIds);
     }
     fetchData();
   }, []);
@@ -28,7 +28,7 @@ export const PlanetCard = () => {
     <div className="container d-flex col-10 overflow-auto mt-5 mx-auto">
       {planets?.map((planet, index) => (
         <div className="card" style={{ minWidth: "200px" }} key={index}>
-          <img src="..." className="card-img-top" alt="..." />
+          <img src={`https://starwars-visualguide.com/assets/img/planets/${planet.id}.jpg`} className="card-img-top" alt="..." />
           <div className="card-body">
             <h5 className="card-title text-dark">{planet.name}</h5>
             <button className="btn btn-primary" onClick={() => handleFavorites(planet.name)}>
